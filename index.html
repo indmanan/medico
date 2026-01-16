@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
   <title>Secure Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -151,35 +151,36 @@
   <h2>Register Account</h2>
   <p>Fields marked * are mandatory</p>
 
-  <form onsubmit="return validatePassword()">
+  <!-- <form onsubmit="return validatePassword()"> -->
+<form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D5g000005E4Hw" method="POST" onsubmit="return validatePassword()">
 
     <div class="field">
-      <input type="text" required placeholder=" " />
+      <input id="00NJ10000036p8c" maxlength="16" name="00NJ10000036p8c" type="text" required placeholder=" " />
       <label>GST Number <span>*</span></label>
     </div>
 
     <div class="field">
-      <input type="text" required placeholder=" " />
+      <input id="00NJ10000036p8h" maxlength="15" name="00NJ10000036p8h" type="text"  required placeholder=" " />
       <label>Drug License Number <span>*</span></label>
     </div>
 
     <div class="field">
-      <input type="text" placeholder=" " />
+      <input id="00NJ10000036p8m" maxlength="20" name="00NJ10000036p8m"  type="text" placeholder=" " />
       <label>FSSAI License Number</label>
     </div>
 
     <div class="field">
-      <input type="tel" required pattern="[0-9]{10}" placeholder=" " />
+      <input  id="phone" maxlength="40" name="phone" type="tel" required pattern="[0-9]{10}" placeholder=" " />
       <label>Phone Number <span>*</span></label>
     </div>
 
     <div class="field">
-      <input type="email" required placeholder=" " />
+      <input id="email" maxlength="80" name="email" type="email" required placeholder=" " />
       <label>Email <span>*</span></label>
     </div>
 
     <div class="field">
-      <input type="password" id="pwd" required minlength="6" placeholder=" " />
+      <input type="password" id="pwd" maxlength="50" name="00NJ10000036p8w" size="20"  minlength="6" required placeholder=" " />
       <label>Password <span>*</span></label>
     </div>
 
