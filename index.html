@@ -177,11 +177,14 @@
       font-size: 13px;
       border-radius: 10px;
     }
+    /* ===== PRODUCT DETAIL (ADDITIVE) ===== */
+      #productDetailScreen {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      }
   </style>
 </head>
 
 <body>
-
 <!-- ===== LOGIN (UNCHANGED HTML) ===== -->
 <div class="screen" id="loginScreen">
   <div class="container">
@@ -271,6 +274,28 @@
   </div>
 </div>
 
+<!-- Product detila page -->
+ <!-- PRODUCT DETAIL SCREEN (ADDITIVE) -->
+<div class="screen hidden" id="productDetailScreen">
+  <div class="container">
+    <h2 id="detailName">Product Name</h2>
+    <p id="detailPrice">₹0</p>
+
+    <div style="height:160px;border-radius:16px;background:rgba(255,255,255,0.2);
+                display:flex;align-items:center;justify-content:center;margin:20px 0;">
+      Image
+    </div>
+
+    <p style="font-size:14px;opacity:0.9;margin-bottom:20px;" id="detailDesc">
+      Product description
+    </p>
+
+    <button>Add to cart</button>
+    <button style="margin-top:10px;background:#555" onclick="closeProductDetail()">
+      Back
+    </button>
+  </div>
+</div>
 <script>
   /* ===== YOUR EXISTING JS (UNCHANGED) ===== */
   function showSignup() {
@@ -356,6 +381,40 @@ demoProducts.forEach(prod => {
   `;
   productListEl.appendChild(card);
 });
+
+
+/* ===== PRODUCT DETAIL LOGIC (ADDITIVE) ===== */
+
+// reuse existing demoProducts array safely
+const productDetailScreen = document.getElementById('productDetailScreen');
+const appScreen = document.getElementById('appScreen');
+
+const detailName = document.getElementById('detailName');
+const detailPrice = document.getElementById('detailPrice');
+const detailDesc = document.getElementById('detailDesc');
+
+// event delegation: no change to product cards
+document.getElementById('productList').addEventListener('click', function (e) {
+  const card = e.target.closest('.product-card');
+  if (!card) return;
+
+  const index = Array.from(this.children).indexOf(card);
+  const prod = demoProducts[index];
+
+  if (!prod) return;
+
+  detailName.innerText = prod.name;
+  detailPrice.innerText = prod.price;
+  detailDesc.innerText = 'This is a demo description for ' + prod.name;
+
+  appScreen.classList.add('hidden');
+  productDetailScreen.classList.remove('hidden');
+});
+
+function closeProductDetail() {
+  productDetailScreen.classList.add('hidden');
+  appScreen.classList.remove('hidden');
+}
 </script>
 
 </body>
