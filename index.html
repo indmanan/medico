@@ -14,28 +14,37 @@
     }
 
     body {
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* FULL SCREEN WRAPPER */
+    .screen {
+      height: 100%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px; /* mobile safe padding */
-      color: #fff;
+      padding: 5vw; /* left & right spacing */
     }
 
-    .card {
+    /* MAIN CONTAINER */
+    .container {
       width: 100%;
-      max-width: 420px;
+      max-width: 520px;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(18px);
-      border-radius: 18px;
-      padding: 32px 28px; /* FIX: right-side spacing */
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
 
@@ -43,9 +52,10 @@
       text-align: center;
       font-size: 14px;
       opacity: 0.85;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
+    /* FORM FIELD */
     .field {
       position: relative;
       margin-bottom: 18px;
@@ -87,6 +97,7 @@
       border-radius: 6px;
     }
 
+    /* BUTTON */
     button {
       width: 100%;
       padding: 14px;
@@ -99,12 +110,12 @@
       margin-top: 12px;
     }
 
+    /* SWITCH */
     .switch {
-      margin-top: 20px;
+      margin-top: 22px;
       text-align: center;
       font-size: 14px;
       cursor: pointer;
-      opacity: 0.9;
     }
 
     .switch span {
@@ -112,15 +123,16 @@
       font-weight: 600;
     }
 
+    /* VISIBILITY */
     .hidden {
       display: none;
     }
 
-    /* SIGNUP SCROLL AREA FIX */
+    /* SIGNUP SCROLL */
     .signup {
-      max-height: 75vh;          /* responsive height */
+      max-height: 80vh;
       overflow-y: auto;
-      padding-right: 6px;        /* FIX: right spacing */
+      padding-right: 8px;
     }
 
     .signup::-webkit-scrollbar {
@@ -132,112 +144,112 @@
       border-radius: 10px;
     }
 
-    /* MOBILE OPTIMIZATION */
+    /* MOBILE */
     @media (max-width: 480px) {
-      .card {
-        padding: 26px 22px;
+      .container {
+        padding: 28px 22px;
       }
 
       h2 {
         font-size: 20px;
       }
-
-      p {
-        font-size: 13px;
-      }
     }
 
-    /* TABLET OPTIMIZATION */
-    @media (min-width: 481px) and (max-width: 768px) {
-      .card {
-        max-width: 460px;
+    /* LARGE DESKTOP */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 600px;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div class="card" id="loginBox">
-  <h2>Welcome Back</h2>
-  <p>Login to continue</p>
-
-  <div class="field">
-    <input type="email" required placeholder=" " />
-    <label>Email</label>
-  </div>
-
-  <div class="field">
-    <input type="password" required placeholder=" " />
-    <label>Password</label>
-  </div>
-
-  <button>Login</button>
-
-  <div class="switch" onclick="showSignup()">
-    Don’t have an account? <span>Sign up</span>
-  </div>
-</div>
-
-<!-- SIGNUP -->
-<div class="card hidden signup" id="signupBox">
-  <h2>Register Account</h2>
-  <p>Fields marked * are mandatory</p>
-
-  <form onsubmit="return validatePassword()">
-
-    <div class="field">
-      <input type="text" required placeholder=" " />
-      <label>GST Number <span>*</span></label>
-    </div>
-
-    <div class="field">
-      <input type="text" required placeholder=" " />
-      <label>Drug License Number <span>*</span></label>
-    </div>
-
-    <div class="field">
-      <input type="text" placeholder=" " />
-      <label>FSSAI License Number</label>
-    </div>
-
-    <div class="field">
-      <input type="tel" required pattern="[0-9]{10}" placeholder=" " />
-      <label>Phone Number <span>*</span></label>
-    </div>
+<!-- LOGIN SCREEN -->
+<div class="screen" id="loginScreen">
+  <div class="container">
+    <h2>Welcome Back</h2>
+    <p>Login to continue</p>
 
     <div class="field">
       <input type="email" required placeholder=" " />
-      <label>Email <span>*</span></label>
+      <label>Email</label>
     </div>
 
     <div class="field">
-      <input type="password" id="pwd" required minlength="6" placeholder=" " />
-      <label>Password <span>*</span></label>
+      <input type="password" required placeholder=" " />
+      <label>Password</label>
     </div>
 
-    <div class="field">
-      <input type="password" id="cpwd" required minlength="6" placeholder=" " />
-      <label>Confirm Password <span>*</span></label>
+    <button>Login</button>
+
+    <div class="switch" onclick="showSignup()">
+      Don’t have an account? <span>Sign up</span>
     </div>
+  </div>
+</div>
 
-    <button type="submit">Create Account</button>
-  </form>
+<!-- SIGNUP SCREEN -->
+<div class="screen hidden" id="signupScreen">
+  <div class="container signup">
+    <h2>Register Account</h2>
+    <p>Fields marked * are mandatory</p>
 
-  <div class="switch" onclick="showLogin()">
-    Already registered? <span>Login</span>
+    <form onsubmit="return validatePassword()">
+
+      <div class="field">
+        <input type="text" required placeholder=" " />
+        <label>GST Number <span>*</span></label>
+      </div>
+
+      <div class="field">
+        <input type="text" required placeholder=" " />
+        <label>Drug License Number <span>*</span></label>
+      </div>
+
+      <div class="field">
+        <input type="text" placeholder=" " />
+        <label>FSSAI License Number</label>
+      </div>
+
+      <div class="field">
+        <input type="tel" required pattern="[0-9]{10}" placeholder=" " />
+        <label>Phone Number <span>*</span></label>
+      </div>
+
+      <div class="field">
+        <input type="email" required placeholder=" " />
+        <label>Email <span>*</span></label>
+      </div>
+
+      <div class="field">
+        <input type="password" id="pwd" required minlength="6" placeholder=" " />
+        <label>Password <span>*</span></label>
+      </div>
+
+      <div class="field">
+        <input type="password" id="cpwd" required minlength="6" placeholder=" " />
+        <label>Confirm Password <span>*</span></label>
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div class="switch" onclick="showLogin()">
+      Already registered? <span>Login</span>
+    </div>
   </div>
 </div>
 
 <script>
   function showSignup() {
-    document.getElementById('loginBox').classList.add('hidden');
-    document.getElementById('signupBox').classList.remove('hidden');
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('signupScreen').classList.remove('hidden');
   }
 
   function showLogin() {
-    document.getElementById('signupBox').classList.add('hidden');
-    document.getElementById('loginBox').classList.remove('hidden');
+    document.getElementById('signupScreen').classList.add('hidden');
+    document.getElementById('loginScreen').classList.remove('hidden');
   }
 
   function validatePassword() {
