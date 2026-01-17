@@ -19,6 +19,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px; /* mobile safe padding */
       color: #fff;
     }
 
@@ -28,7 +29,7 @@
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(18px);
       border-radius: 18px;
-      padding: 32px;
+      padding: 32px 28px; /* FIX: right-side spacing */
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
@@ -41,8 +42,8 @@
     p {
       text-align: center;
       font-size: 14px;
-      opacity: 0.8;
-      margin-bottom: 25px;
+      opacity: 0.85;
+      margin-bottom: 24px;
     }
 
     .field {
@@ -67,7 +68,7 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 13px;
-      opacity: 0.7;
+      opacity: 0.75;
       pointer-events: none;
       transition: 0.3s;
     }
@@ -95,7 +96,7 @@
       color: #fff;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .switch {
@@ -115,16 +116,48 @@
       display: none;
     }
 
+    /* SIGNUP SCROLL AREA FIX */
     .signup {
-      max-height: 520px;
+      max-height: 75vh;          /* responsive height */
       overflow-y: auto;
-      padding-right: 4px;
+      padding-right: 6px;        /* FIX: right spacing */
+    }
+
+    .signup::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .signup::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+    }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 480px) {
+      .card {
+        padding: 26px 22px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+
+    /* TABLET OPTIMIZATION */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .card {
+        max-width: 460px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- LOGIN (NO ASTERISK HERE) -->
+<!-- LOGIN -->
 <div class="card" id="loginBox">
   <h2>Welcome Back</h2>
   <p>Login to continue</p>
@@ -146,7 +179,7 @@
   </div>
 </div>
 
-<!-- SIGNUP (ASTERISK ONLY HERE) -->
+<!-- SIGNUP -->
 <div class="card hidden signup" id="signupBox">
   <h2>Register Account</h2>
   <p>Fields marked * are mandatory</p>
