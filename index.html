@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ---------- BASE ---------- */
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
 body{
   height:100vh;width:100vw;
@@ -14,15 +13,11 @@ body{
   color:#fff;overflow:hidden
 }
 .hidden{display:none}
-
-/* ---------- SCREEN ---------- */
 .screen{
   height:100%;width:100%;
   display:flex;align-items:center;justify-content:center;
   padding:clamp(16px,5vw,80px)
 }
-
-/* ---------- CARD ---------- */
 .container{
   width:100%;max-width:560px;
   background:rgba(255,255,255,.12);
@@ -31,8 +26,6 @@ body{
   padding:40px;
   box-shadow:0 25px 50px rgba(0,0,0,.45)
 }
-
-/* ---------- FORM ---------- */
 .field{position:relative;margin-bottom:18px}
 .field input{
   width:100%;padding:14px;border-radius:12px;border:none;
@@ -53,77 +46,30 @@ button{
 }
 .switch{text-align:center;margin-top:20px}
 .switch span{color:#00c6ff;font-weight:600;cursor:pointer}
-
-/* ---------- LOGIN ---------- */
 .brand{text-align:center;margin-bottom:22px}
 .brand h1{font-size:26px}
 .brand p{opacity:.8;font-size:14px}
 .error{color:#ffb3b3;font-size:13px;margin-bottom:12px;display:none}
 .eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer}
 
-/* ---------- APP SHELL ---------- */
-.app{
-  height:100%;width:100%;
-  display:flex;flex-direction:column
-}
-.app-body{
-  flex:1;overflow:hidden;padding:16px
-}
-
-/* ---------- HOME ---------- */
-.search{
-  background:rgba(255,255,255,.2);
-  padding:12px;border-radius:12px;margin-bottom:16px
-}
-.search input{
-  width:100%;border:none;background:none;color:#fff;outline:none
-}
-
-/* ---------- CAROUSEL ---------- */
-.carousel{
-  position:relative;height:160px;border-radius:16px;overflow:hidden
-}
+.app{height:100%;width:100%;display:flex;flex-direction:column}
+.app-body{flex:1;padding:16px}
+.search{background:rgba(255,255,255,.2);padding:12px;border-radius:12px;margin-bottom:16px}
+.search input{width:100%;border:none;background:none;color:#fff;outline:none}
+.carousel{position:relative;height:160px;border-radius:16px;overflow:hidden}
 .slides{display:flex;height:100%;transition:.5s}
-.slide{
-  min-width:100%;display:flex;align-items:center;justify-content:center;
-  font-size:22px;font-weight:600
-}
-.s1{background:#1abc9c}
-.s2{background:#3498db}
-.s3{background:#9b59b6}
-.arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:rgba(0,0,0,.4);padding:10px;border-radius:50%;
-  cursor:pointer
-}
-.left{left:10px}
-.right{right:10px}
-
-/* ---------- TABS ---------- */
-.tabs{
-  height:60px;background:rgba(0,0,0,.4);
-  display:flex;justify-content:space-around;align-items:center
-}
+.slide{min-width:100%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600}
+.s1{background:#1abc9c}.s2{background:#3498db}.s3{background:#9b59b6}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);padding:10px;border-radius:50%;cursor:pointer}
+.left{left:10px}.right{right:10px}
+.tabs{height:60px;background:rgba(0,0,0,.4);display:flex;justify-content:space-around;align-items:center}
 .tab{font-size:14px;cursor:pointer;opacity:.7}
 .tab.active{opacity:1;color:#00c6ff}
 
-/* ---------- POPUP ---------- */
-.modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.6);
-  display:none;align-items:center;justify-content:center
-}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center}
 .modal.active{display:flex}
-.modal-box{
-  background:#fff;color:#333;padding:30px;border-radius:18px;text-align:center
-}
-.check{width:70px;height:70px;border-radius:50%;background:#2ecc71;
-  display:flex;align-items:center;justify-content:center;
-  font-size:36px;color:#fff;margin:0 auto 16px}
-
-/* ---------- MOBILE ---------- */
-@media(max-width:480px){
-  .container{padding:26px}
-}
+.modal-box{background:#fff;color:#333;padding:30px;border-radius:18px;text-align:center}
+.check{width:70px;height:70px;border-radius:50%;background:#2ecc71;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff;margin:0 auto 16px}
 </style>
 </head>
 <body>
@@ -150,11 +96,10 @@ button{
   </div>
 </div>
 
-<!-- SIGNUP (UNCHANGED) -->
+<!-- SIGNUP -->
 <div class="screen hidden" id="signupScreen">
   <div class="container">
     <h2>Register Account</h2>
-    <p>Fields marked * are mandatory</p>
     <form onsubmit="return signup()">
       <div class="field"><input required placeholder=" "><label>GST *</label></div>
       <div class="field"><input required placeholder=" "><label>Drug License *</label></div>
@@ -169,7 +114,7 @@ button{
   </div>
 </div>
 
-<!-- SUCCESS POPUP -->
+<!-- SUCCESS MODAL -->
 <div class="modal" id="modal">
   <div class="modal-box">
     <div class="check">✓</div>
@@ -192,14 +137,13 @@ button{
       <div class="arrow right" onclick="next()">›</div>
     </div>
   </div>
-
   <div class="app-body hidden" id="ordersTab">Orders Screen</div>
   <div class="app-body hidden" id="profileTab">Profile Screen</div>
 
   <div class="tabs">
-    <div class="tab active" onclick="showTab('home')">Home</div>
-    <div class="tab" onclick="showTab('orders')">Orders</div>
-    <div class="tab" onclick="showTab('profile')">Profile</div>
+    <div class="tab active" onclick="showTab('home',this)">Home</div>
+    <div class="tab" onclick="showTab('orders',this)">Orders</div>
+    <div class="tab" onclick="showTab('profile',this)">Profile</div>
   </div>
 </div>
 
@@ -209,34 +153,55 @@ setInterval(()=>next(),1000);
 
 function next(){
   idx=(idx+1)%3;
-  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`
+  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`;
 }
 function prev(){
   idx=(idx+2)%3;
-  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`
+  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`;
 }
 
 function login(){
-  if(loginUser.value==="admin" && loginPwd.value==="1234"){
-    loginScreen.classList.add("hidden");
-    app.classList.remove("hidden");
-  }else loginErr.style.display="block"
+  const u=document.getElementById('loginUser').value;
+  const p=document.getElementById('loginPwd').value;
+  const err=document.getElementById('loginErr');
+  if(u==="admin" && p==="1234"){
+    document.getElementById('loginScreen').classList.add("hidden");
+    document.getElementById('app').classList.remove("hidden");
+    err.style.display="none";
+  } else {
+    err.style.display="block";
+  }
 }
-function togglePwd(){loginPwd.type=loginPwd.type==="password"?"text":"password"}
-function showSignup(){loginScreen.classList.add("hidden");signupScreen.classList.remove("hidden")}
-function showLogin(){signupScreen.classList.add("hidden");loginScreen.classList.remove("hidden")}
+function togglePwd(){
+  const p=document.getElementById('loginPwd');
+  p.type=p.type==="password"?"text":"password";
+}
+function showSignup(){
+  document.getElementById('loginScreen').classList.add("hidden");
+  document.getElementById('signupScreen').classList.remove("hidden");
+}
+function showLogin(){
+  document.getElementById('signupScreen').classList.add("hidden");
+  document.getElementById('loginScreen').classList.remove("hidden");
+}
 function signup(){
-  if(spwd.value!==scp.value){alert("Password mismatch");return false}
-  modal.classList.add("active");return false
+  const p=document.getElementById('spwd').value;
+  const c=document.getElementById('scp').value;
+  if(p!==c){alert("Password mismatch");return false;}
+  document.getElementById('modal').classList.add("active");
+  return false;
 }
-function closeModal(){modal.classList.remove("active");showLogin()}
-function showTab(t){
-  ["home","orders","profile"].forEach(x=>{
-    document.getElementById(x+"Tab").classList.add("hidden")
-  })
-  document.getElementById(t+"Tab").classList.remove("hidden")
-  document.querySelectorAll(".tab").forEach(e=>e.classList.remove("active"))
-  event.target.classList.add("active")
+function closeModal(){
+  document.getElementById('modal').classList.remove("active");
+  showLogin();
+}
+function showTab(tab,el){
+  ["home","orders","profile"].forEach(t=>{
+    document.getElementById(t+"Tab").classList.add("hidden");
+  });
+  document.getElementById(tab+"Tab").classList.remove("hidden");
+  document.querySelectorAll(".tab").forEach(e=>e.classList.remove("active"));
+  el.classList.add("active");
 }
 </script>
 
