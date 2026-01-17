@@ -1,207 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>MedOrder Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<title>Secure Access</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
-body{
-  height:100vh;width:100vw;
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:#fff;overflow:hidden
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
-.hidden{display:none}
-.screen{
-  height:100%;width:100%;
-  display:flex;align-items:center;justify-content:center;
-  padding:clamp(16px,5vw,80px)
-}
-.container{
-  width:100%;max-width:560px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(18px);
-  border-radius:22px;
-  padding:40px;
-  box-shadow:0 25px 50px rgba(0,0,0,.45)
-}
-.field{position:relative;margin-bottom:18px}
-.field input{
-  width:100%;padding:14px;border-radius:12px;border:none;
-  background:rgba(255,255,255,.2);color:#fff;outline:none
-}
-.field label{
-  position:absolute;left:14px;top:50%;transform:translateY(-50%);
-  font-size:13px;opacity:.75;transition:.3s
-}
-.field input:focus+label,
-.field input:not(:placeholder-shown)+label{
-  top:-8px;font-size:11px;background:#2c5364;padding:0 8px;border-radius:8px
-}
-button{
-  width:100%;padding:14px;border-radius:12px;border:none;
-  background:linear-gradient(135deg,#00c6ff,#0072ff);
-  color:#fff;font-weight:600;cursor:pointer
-}
-.switch{text-align:center;margin-top:20px}
-.switch span{color:#00c6ff;font-weight:600;cursor:pointer}
-.brand{text-align:center;margin-bottom:22px}
-.brand h1{font-size:26px}
-.brand p{opacity:.8;font-size:14px}
-.error{color:#ffb3b3;font-size:13px;margin-bottom:12px;display:none}
-.eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer}
 
-.app{height:100%;width:100%;display:flex;flex-direction:column}
-.app-body{flex:1;padding:16px}
-.search{background:rgba(255,255,255,.2);padding:12px;border-radius:12px;margin-bottom:16px}
-.search input{width:100%;border:none;background:none;color:#fff;outline:none}
-.carousel{position:relative;height:160px;border-radius:16px;overflow:hidden}
-.slides{display:flex;height:100%;transition:.5s}
-.slide{min-width:100%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600}
-.s1{background:#1abc9c}.s2{background:#3498db}.s3{background:#9b59b6}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);padding:10px;border-radius:50%;cursor:pointer}
-.left{left:10px}.right{right:10px}
-.tabs{height:60px;background:rgba(0,0,0,.4);display:flex;justify-content:space-around;align-items:center}
-.tab{font-size:14px;cursor:pointer;opacity:.7}
-.tab.active{opacity:1;color:#00c6ff}
+body {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  overflow: hidden;
+}
 
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center}
-.modal.active{display:flex}
-.modal-box{background:#fff;color:#333;padding:30px;border-radius:18px;text-align:center}
-.check{width:70px;height:70px;border-radius:50%;background:#2ecc71;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff;margin:0 auto 16px}
+.screen {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: clamp(16px, 5vw, 80px);
+}
+
+.container {
+  width: 100%;
+  max-width: 560px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+}
+
+/* BRANDING */
+.brand {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.brand h1 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.brand p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* FORM */
+.field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  outline: none;
+}
+
+.field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.75;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 11px;
+  background: #2c5364;
+  padding: 0 8px;
+  border-radius: 8px;
+}
+
+/* PASSWORD TOGGLE */
+.eye {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ERROR MESSAGE */
+.error {
+  color: #ffb3b3;
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* LINKS */
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.links span {
+  color: #00c6ff;
+  cursor: pointer;
+}
+
+.switch {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.switch span {
+  color: #00c6ff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden { display: none; }
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .container { padding: 26px; }
+  .brand h1 { font-size: 22px; }
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- LOGIN SCREEN -->
 <div class="screen" id="loginScreen">
   <div class="container">
+
     <div class="brand">
       <h1>MedOrder</h1>
       <p>Secure medicine ordering platform</p>
     </div>
-    <div class="error" id="loginErr">Invalid credentials</div>
-    <div class="field">
-      <input id="loginUser" placeholder=" ">
-      <label>Username</label>
+
+    <div class="error" id="loginError">
+      Invalid email or password
     </div>
+
     <div class="field">
-      <input id="loginPwd" type="password" placeholder=" ">
+      <input type="email" placeholder=" " required />
+      <label>Email</label>
+    </div>
+
+    <div class="field">
+      <input type="password" id="loginPwd" placeholder=" " required />
       <label>Password</label>
       <span class="eye" onclick="togglePwd()">👁</span>
     </div>
-    <button onclick="login()">Login</button>
-    <div class="switch">Don’t have an account? <span onclick="showSignup()">Sign up</span></div>
-  </div>
-</div>
 
-<!-- SIGNUP -->
-<div class="screen hidden" id="signupScreen">
-  <div class="container">
-    <h2>Register Account</h2>
-    <form onsubmit="return signup()">
-      <div class="field"><input required placeholder=" "><label>GST *</label></div>
-      <div class="field"><input required placeholder=" "><label>Drug License *</label></div>
-      <div class="field"><input placeholder=" "><label>FSSAI</label></div>
-      <div class="field"><input required placeholder=" "><label>Phone *</label></div>
-      <div class="field"><input required placeholder=" "><label>Email *</label></div>
-      <div class="field"><input id="spwd" type="password" required placeholder=" "><label>Password *</label></div>
-      <div class="field"><input id="scp" type="password" required placeholder=" "><label>Confirm *</label></div>
-      <button>Create Account</button>
-    </form>
-    <div class="switch" onclick="showLogin()">Already registered? <span>Login</span></div>
-  </div>
-</div>
+    <button onclick="fakeLogin()">Login</button>
 
-<!-- SUCCESS MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="check">✓</div>
-    <h3>Thank you for registering</h3>
-    <button onclick="closeModal()">OK</button>
-  </div>
-</div>
-
-<!-- APP -->
-<div class="app hidden" id="app">
-  <div class="app-body" id="homeTab">
-    <div class="search"><input placeholder="Search medicines..."></div>
-    <div class="carousel">
-      <div class="slides" id="slides">
-        <div class="slide s1">Sample Image 1</div>
-        <div class="slide s2">Sample Image 2</div>
-        <div class="slide s3">Sample Image 3</div>
-      </div>
-      <div class="arrow left" onclick="prev()">‹</div>
-      <div class="arrow right" onclick="next()">›</div>
+    <div class="links">
+      <span onclick="forgotPwd()">Forgot password?</span>
     </div>
-  </div>
-  <div class="app-body hidden" id="ordersTab">Orders Screen</div>
-  <div class="app-body hidden" id="profileTab">Profile Screen</div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showTab('home',this)">Home</div>
-    <div class="tab" onclick="showTab('orders',this)">Orders</div>
-    <div class="tab" onclick="showTab('profile',this)">Profile</div>
+    <div class="switch">
+      Don’t have an account? <span onclick="alert('Switch to signup screen')">Sign up</span>
+    </div>
   </div>
 </div>
 
 <script>
-let idx=0;
-setInterval(()=>next(),1000);
-
-function next(){
-  idx=(idx+1)%3;
-  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`;
-}
-function prev(){
-  idx=(idx+2)%3;
-  document.getElementById('slides').style.transform=`translateX(-${idx*100}%)`;
+function togglePwd() {
+  const pwd = document.getElementById('loginPwd');
+  pwd.type = pwd.type === 'password' ? 'text' : 'password';
 }
 
-function login(){
-  const u=document.getElementById('loginUser').value;
-  const p=document.getElementById('loginPwd').value;
-  const err=document.getElementById('loginErr');
-  if(u==="admin" && p==="1234"){
-    document.getElementById('loginScreen').classList.add("hidden");
-    document.getElementById('app').classList.remove("hidden");
-    err.style.display="none";
-  } else {
-    err.style.display="block";
-  }
+function fakeLogin() {
+  // demo error
+  document.getElementById('loginError').style.display = 'block';
 }
-function togglePwd(){
-  const p=document.getElementById('loginPwd');
-  p.type=p.type==="password"?"text":"password";
-}
-function showSignup(){
-  document.getElementById('loginScreen').classList.add("hidden");
-  document.getElementById('signupScreen').classList.remove("hidden");
-}
-function showLogin(){
-  document.getElementById('signupScreen').classList.add("hidden");
-  document.getElementById('loginScreen').classList.remove("hidden");
-}
-function signup(){
-  const p=document.getElementById('spwd').value;
-  const c=document.getElementById('scp').value;
-  if(p!==c){alert("Password mismatch");return false;}
-  document.getElementById('modal').classList.add("active");
-  return false;
-}
-function closeModal(){
-  document.getElementById('modal').classList.remove("active");
-  showLogin();
-}
-function showTab(tab,el){
-  ["home","orders","profile"].forEach(t=>{
-    document.getElementById(t+"Tab").classList.add("hidden");
-  });
-  document.getElementById(tab+"Tab").classList.remove("hidden");
-  document.querySelectorAll(".tab").forEach(e=>e.classList.remove("active"));
-  el.classList.add("active");
+
+function forgotPwd() {
+  alert('Password reset link sent to your email (demo)');
 }
 </script>
 
